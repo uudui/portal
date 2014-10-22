@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+    <definition name="messages/*" template="messages/layout">
+        <put-attribute name="content" value="content/messages/{1}"/>
+        <put-attribute name="title" value="title/messages/{1}"/>
+        <put-attribute name="head" value="head/messages/{1}"/>
+    </definition>
+
+    <definition name="content/messages/*" template="messages/{1} :: content"/>
+    <definition name="title/messages/*" template="messages/{1} :: title"/>
+    <definition name="head/messages/*" template="messages/{1} :: /html/head/link"/>
+
+    <definition name="login" template="messages/layout">
+        <put-attribute name="content" value="content/messages/login"/>
+        <put-attribute name="title" value="title/messages/login"/>
+        <put-attribute name="head" value="head/messages/login"/>
+    </definition>
+
+    <definition name="unauthorized" template="messages/layout">
+        <put-attribute name="content" value="content/messages/unauthorized"/>
+        <put-attribute name="title" value="title/messages/unauthorized"/>
+        <put-attribute name="head" value="head/messages/unauthorized"/>
+    </definition>
+</tiles-definitions>

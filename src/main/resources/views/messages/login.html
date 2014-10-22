@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org" xmlns:shiro="http://www.thymeleaf.org">
+<head>
+    <title tiles:fragment="title">Messages : View All</title>
+</head>
+<body>
+<div tiles:fragment="content">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function refreshCaptcha() {
+            var link = /*[[@{/captchaImg(t='')}]]*/ '';
+            link += Math.random();
+            document.getElementById("jcaptcha").setAttribute("src", link);
+        }
+        /*]]>*/
+    </script>
+    <div class="container">
+        <shiro:notAuthenticated>
+            <p th:text="${error}">
+            </p>
+
+            <form action="" method="post" name="loginform">
+                <table align="left" border="0" cellpadding="3" cellspacing="0">
+                    <tr>
+                        <td>Username:</td>
+                        <td><input maxlength="30" name="username" type="text" value="neal"/></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input maxlength="30" name="password" type="password" value="password"/></td>
+                    </tr>
+                    <tr>
+                        <td>Code</td>
+                        <td>
+                            <input type="text" name="jCaptcha"/>
+                            <img id="jcaptcha" th:src="@{/captchaImg}" title="Click Change Code"/>
+                            <a class="jcaptcha-btn" href="javascript:refreshCaptcha();">Change</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left" colspan="2">
+                            <input name="rememberMe" type="checkbox"/><span
+                                style="font-size: x-small;">Remember Me</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" colspan="2"><input name="submit" type="submit" value="Login"/></td>
+                    </tr>
+                </table>
+            </form>
+        </shiro:notAuthenticated>
+        <shiro:authenticated>
+            Your already login! <a href="javascript:history.go(-1)">please back</a>!
+        </shiro:authenticated>
+    </div>
+</div>
+</body>
+</html>

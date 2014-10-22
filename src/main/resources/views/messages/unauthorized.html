@@ -1,0 +1,12 @@
+<html xmlns:tiles="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title tiles:fragment="title">Messages : Create</title>
+</head>
+<body>
+<div tiles:fragment="content">
+    <div class="container">
+        You don't have permission <p th:text="|[${exception.message}]|"></p>
+    </div>
+</div>
+</body>
+</html>
