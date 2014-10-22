@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private UserRepository userRepository;
 
-    @Cacheable(key = "userCache", value = "#name")
+    @Cacheable(value = "userCache", key = "#name")
     public User findByName(String name) {
         return userRepository.findByName(name);
     }
