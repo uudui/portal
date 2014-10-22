@@ -17,7 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by neal.xu on 2014/10/10.
+ * Created by Neal on 2014/10/10.
  */
 public class CustomSecurityRealm extends AuthorizingRealm {
     private UserService userService;

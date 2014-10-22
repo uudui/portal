@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
- * Created by neal.xu on 2014/10/15.
+ * Created by Neal on 2014/10/15.
  */
 public class AccessFilter extends OncePerRequestFilter {
     private final Logger logger = LoggerFactory.getLogger(AccessFilter.class);

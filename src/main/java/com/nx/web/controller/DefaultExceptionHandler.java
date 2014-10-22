@@ -9,7 +9,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Created by neal.xu on 2014/10/16.
+ * Created by Neal on 2014/10/16.
  */
 @ControllerAdvice
 public class DefaultExceptionHandler {

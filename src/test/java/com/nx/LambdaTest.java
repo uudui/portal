@@ -12,7 +12,7 @@ import java.util.function.IntConsumer;
 import java.util.stream.Collectors;
 
 /**
- * Created by neal.xu on 2014/10/20.
+ * Created by Neal on 2014/10/20.
  */
 public class LambdaTest {
     @Test

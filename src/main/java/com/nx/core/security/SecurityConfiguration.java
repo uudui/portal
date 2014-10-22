@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by neal.xu on 2014/10/10.
+ * Created by Neal on 2014/10/10.
  */
 @Configuration
 public class SecurityConfiguration extends CacheConfigSupport {
