@@ -47,51 +47,27 @@
     -->
 
     <defaultCache
-            maxElementsInMemory="10000"
-            eternal="false"
-            timeToIdleSeconds="120"
-            timeToLiveSeconds="120"
-            overflowToDisk="false"
-            diskPersistent="false"
-            diskExpiryThreadIntervalSeconds="120"
-            />
+            maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="120" timeToLiveSeconds="120"
+            overflowToDisk="false" diskPersistent="false" diskExpiryThreadIntervalSeconds="120"/>
 
-    <cache name="shiro-activeSessionCache"
-           maxEntriesLocalHeap="2000"
-           eternal="false"
-           timeToIdleSeconds="3600"
-           timeToLiveSeconds="0"
-           overflowToDisk="false"
-           statistics="true">
+    <cache name="shiro-activeSessionCache" maxEntriesLocalHeap="2000" eternal="false"
+           timeToIdleSeconds="3600" timeToLiveSeconds="0" overflowToDisk="false" statistics="true">
     </cache>
 
     <!-- Login Cache Lock 10min -->
-    <cache name="passwordRetryCache"
-           maxEntriesLocalHeap="2000"
-           eternal="false"
-           timeToIdleSeconds="3600"
-           timeToLiveSeconds="0"
-           overflowToDisk="false"
-           statistics="true">
+    <cache name="passwordRetryCache" maxEntriesLocalHeap="2000" eternal="false" timeToIdleSeconds="3600"
+           timeToLiveSeconds="0" overflowToDisk="false" statistics="true">
     </cache>
 
-    <cache name="authorizationCache"
-           maxEntriesLocalHeap="2000"
-           eternal="false"
-           timeToIdleSeconds="0"
-           timeToLiveSeconds="0"
-           overflowToDisk="false"
-           statistics="true">
+    <cache name="authorizationCache" maxEntriesLocalHeap="2000" eternal="false" timeToIdleSeconds="0"
+           timeToLiveSeconds="0" overflowToDisk="false" statistics="true">
     </cache>
 
-    <cache name="authenticationCache"
-           maxEntriesLocalHeap="2000"
-           eternal="false"
-           timeToIdleSeconds="0"
-           timeToLiveSeconds="0"
-           overflowToDisk="false"
-           statistics="true">
+    <cache name="authenticationCache" maxEntriesLocalHeap="2000" eternal="false" timeToIdleSeconds="0"
+           timeToLiveSeconds="0" overflowToDisk="false" statistics="true">
     </cache>
+
+    <cache name="shiro-accountRejectCache" maxElementsInMemory="10" eternal="true" overflowToDisk="false"/>
 
     <cache name="userCache" maxElementsInMemory="10" eternal="true" overflowToDisk="false"/>
 
