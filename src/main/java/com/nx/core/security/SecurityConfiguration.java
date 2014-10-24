@@ -4,6 +4,7 @@ import com.nx.core.cache.CacheConfigSupport;
 import com.nx.core.filters.AccessFilter;
 import com.nx.core.filters.FormAuthenticationCaptchaFilter;
 import com.nx.core.filters.JCaptchaFilter;
+import com.nx.core.filters.RejectFilter;
 import com.nx.core.web.WebSessionManager;
 import org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler;
 import org.apache.shiro.session.mgt.SessionValidationScheduler;
@@ -16,7 +17,6 @@ import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.mgt.WebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.context.annotation.Bean;
@@ -94,7 +94,7 @@ public class SecurityConfiguration extends CacheConfigSupport {
     }
 
     @Bean
-    public DefaultWebSessionManager sessionManager() {
+    public WebSessionManager sessionManager() {
         WebSessionManager sessionManager = new WebSessionManager();
         sessionManager.setSessionDAO(sessionDAO());
 
@@ -171,13 +171,29 @@ public class SecurityConfiguration extends CacheConfigSupport {
         return shiroFilter;
     }
 
+    @Bean
+    public RejectFilter rejectFilter() {
+        RejectFilter rejectFilter = new RejectFilter();
+        rejectFilter.setSessionManager(sessionManager());
+        rejectFilter.setCacheManager(cacheManager());
+//        rejectFilter.setMaxSession(2);
+        rejectFilter.setMaxSession(RejectFilter.NOT_LIMIT);
+        rejectFilter.setRejectAfter(true);
+        rejectFilter.setRejectCache("shiro-accountRejectCache");
+        rejectFilter.setRejectUrl("/login?reject=1");
+        return rejectFilter;
+    }
+
     private void addCustomFilters(ShiroFilterFactoryBean shiroFilter) {
         shiroFilter.getFilters().put("accessFilter", new AccessFilter());
 
+        // Add Img Filter
         FormAuthenticationCaptchaFilter formAuthenticationCaptchaFilter = new FormAuthenticationCaptchaFilter();
         formAuthenticationCaptchaFilter.setCaptchaParam("jCaptcha");
         shiroFilter.getFilters().put("authc", formAuthenticationCaptchaFilter);
 
+        //reject filter
+        shiroFilter.getFilters().put("reject", rejectFilter());
     }
 
     private void setDefinitions(ShiroFilterFactoryBean shiroFilter) {
@@ -190,7 +206,7 @@ public class SecurityConfiguration extends CacheConfigSupport {
 
         //If need config path , must add accessFilter
 //        definitionsMap.put("/message/**", "accessFilter,authc");
-        definitionsMap.put("/**", "accessFilter,user");
+        definitionsMap.put("/**", "accessFilter,reject,user");
         shiroFilter.setFilterChainDefinitionMap(definitionsMap);
     }
 }

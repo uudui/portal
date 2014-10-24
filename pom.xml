@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <spring-framework>4.1.0.RELEASE</spring-framework>
+        <spring-framework>4.1.1.RELEASE</spring-framework>
         <spring-data-jpa>1.3.4.RELEASE</spring-data-jpa>
         <thymeleaf-extras>2.1.1.RELEASE</thymeleaf-extras>
         <thymeleaf-spring4>2.1.3.RELEASE</thymeleaf-spring4>
