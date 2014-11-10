@@ -182,11 +182,6 @@
             <version>${shiro}</version>
         </dependency>
         <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache-core</artifactId>
-            <version>2.6.5</version>
-        </dependency>
-        <dependency>
             <groupId>com.github.theborakompanioni</groupId>
             <artifactId>thymeleaf-extras-shiro</artifactId>
             <version>1.1.0</version>
@@ -230,6 +225,28 @@
             <version>${aspectjrt}</version>
         </dependency>
 
+        <!-- Cache -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>2.6.5</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.4.2</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.4.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.0</version>
+        </dependency>
     </dependencies>
 
 
