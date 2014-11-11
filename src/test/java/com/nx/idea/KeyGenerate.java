@@ -117,7 +117,7 @@ public class KeyGenerate {
     }
 
     /**
-     * user for idea 13,14
+     * user for idea 14 , 13 need change bkey[1] = 13
      * @param args
      */
     public static void main(String[] args) {
