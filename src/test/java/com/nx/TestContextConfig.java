@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 /**
@@ -15,10 +16,16 @@ public class TestContextConfig {
     @Bean
     public JedisPoolConfig jedisPoolConfig(){
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        jedisPoolConfig.setMaxTotal(1000);
+        jedisPoolConfig.setMaxTotal(100);
         jedisPoolConfig.setMaxIdle(20);
         jedisPoolConfig.setMaxWaitMillis(60000);
         return jedisPoolConfig;
+    }
+
+    @Bean
+    public JedisPool jedisPool(){
+        JedisPool pool = new JedisPool(jedisPoolConfig(),"localhost",6379);
+        return pool;
     }
 
 

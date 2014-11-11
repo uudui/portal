@@ -12,6 +12,7 @@ import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Pipeline;
 import redis.clients.jedis.Transaction;
 
@@ -25,6 +26,9 @@ import java.util.List;
 public class RedisTest {
     @Autowired
     RedisTemplate<Long, Long> redisTemplate;
+
+    @Autowired
+    JedisPool jedisPool;
 
     @Test
     public void jredis() throws InterruptedException {
@@ -158,9 +162,24 @@ public class RedisTest {
 
         Jedis jedis = new Jedis("localhost");
         Transaction multi = jedis.multi();
-        multi.set("1","6");
+        multi.set("1", "6");
         multi.exec();
         System.out.println(jedis.get("1"));
-
     }
+
+    @Test
+    public void poolRedisTest() throws InterruptedException {
+        for (int j = 0; j < 10; j++) {
+            new Thread(() -> {
+                Jedis redis = jedisPool.getResource();
+                for (int i = 0; i < 1000; i++) {
+                    redis.lpush(Thread.currentThread().getName(), String.valueOf(i));
+                }
+                System.out.println(Thread.activeCount());
+            }).start();
+        }
+        Thread.sleep(10000);
+    }
+
+
 }
