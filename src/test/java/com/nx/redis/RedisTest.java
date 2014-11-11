@@ -172,13 +172,14 @@ public class RedisTest {
         for (int j = 0; j < 10; j++) {
             new Thread(() -> {
                 Jedis redis = jedisPool.getResource();
-                for (int i = 0; i < 1000; i++) {
+                for (int i = 0; i < 10000; i++) {
                     redis.lpush(Thread.currentThread().getName(), String.valueOf(i));
                 }
                 System.out.println(Thread.activeCount());
+                jedisPool.returnResource(redis);
             }).start();
         }
-        Thread.sleep(10000);
+        Thread.sleep(100000);
     }
 
 

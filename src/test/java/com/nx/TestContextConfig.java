@@ -16,9 +16,9 @@ public class TestContextConfig {
     @Bean
     public JedisPoolConfig jedisPoolConfig(){
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        jedisPoolConfig.setMaxTotal(100);
-        jedisPoolConfig.setMaxIdle(20);
-        jedisPoolConfig.setMaxWaitMillis(60000);
+        jedisPoolConfig.setMaxTotal(3);
+        jedisPoolConfig.setMaxIdle(1);
+        jedisPoolConfig.setMaxWaitMillis(6000);
         return jedisPoolConfig;
     }
 
