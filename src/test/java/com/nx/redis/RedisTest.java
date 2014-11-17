@@ -211,7 +211,7 @@ public class RedisTest {
                         jedis.lpush(Thread.currentThread().getName(), String.valueOf(i));
                     }
                     System.out.println(jedis.llen(Thread.currentThread().getName()));
-                    return 1L;
+                    return null;
                 });
 
             }).start();
@@ -220,12 +220,24 @@ public class RedisTest {
     }
 
     @Test
-    public void getAllKey(){
+    public void getAllKey() {
         JedisTemplate<Set<String>> jedisTemplate = new JedisTemplate<>(jedisPool);
         Set<String> execute = jedisTemplate.execute(jedis -> {
             Set<String> keys = jedis.keys("*");
             return keys;
         });
         execute.forEach(System.out::println);
+
+        JedisTemplate<List<String>> jedisTemplate2 = new JedisTemplate<>(jedisPool);
+        if (!execute.isEmpty()) {
+            String key1 = execute.iterator().next();
+            List<String> execute1 = jedisTemplate2.execute(jedis -> {
+                List<String> lrange = jedis.lrange(key1, 0L, -1L);
+                return lrange;
+            });
+            execute1.forEach(System.out::println);
+        }
     }
+
+
 }
