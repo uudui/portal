@@ -17,6 +17,7 @@ import redis.clients.jedis.Pipeline;
 import redis.clients.jedis.Transaction;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Neal on 2014/11/10.
@@ -182,5 +183,49 @@ public class RedisTest {
         Thread.sleep(100000);
     }
 
+    @Test
+    public void testJedisTemplate() throws InterruptedException {
+        JedisTemplate<Long> jedisTemplate = new JedisTemplate<>(jedisPool);
+        for (int j = 0; j < 10; j++) {
+            new Thread(() -> {
+                Long execute = jedisTemplate.execute(jedis -> {
+                    for (int i = 0; i < 10000; i++) {
+                        jedis.lpush(Thread.currentThread().getName(), String.valueOf(i));
+                    }
+                    System.out.println(jedis.llen(Thread.currentThread().getName()));
+                    return 1L;
+                });
 
+            }).start();
+        }
+        Thread.sleep(100000);
+    }
+
+    @Test
+    public void testJedisTemplate2() throws InterruptedException {
+        JedisTemplate<Long> jedisTemplate = new JedisTemplate<>(jedisPool);
+        for (int j = 0; j < 10; j++) {
+            new Thread(() -> {
+                jedisTemplate.execute(jedis -> {
+                    for (int i = 0; i < 10000; i++) {
+                        jedis.lpush(Thread.currentThread().getName(), String.valueOf(i));
+                    }
+                    System.out.println(jedis.llen(Thread.currentThread().getName()));
+                    return 1L;
+                });
+
+            }).start();
+        }
+        Thread.sleep(100000);
+    }
+
+    @Test
+    public void getAllKey(){
+        JedisTemplate<Set<String>> jedisTemplate = new JedisTemplate<>(jedisPool);
+        Set<String> execute = jedisTemplate.execute(jedis -> {
+            Set<String> keys = jedis.keys("*");
+            return keys;
+        });
+        execute.forEach(System.out::println);
+    }
 }
