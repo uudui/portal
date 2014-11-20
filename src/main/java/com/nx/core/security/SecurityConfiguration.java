@@ -3,7 +3,7 @@ package com.nx.core.security;
 import com.nx.core.cache.CacheConfigSupport;
 import com.nx.core.filters.AccessFilter;
 import com.nx.core.filters.FormAuthenticationCaptchaFilter;
-import com.nx.core.filters.JCaptchaFilter;
+import com.nx.core.filters.CaptchaFilter;
 import com.nx.core.filters.RejectFilter;
 import com.nx.core.web.WebSessionManager;
 import org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler;
@@ -17,6 +17,10 @@ import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.mgt.WebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
+import org.patchca.color.SingleColorFactory;
+import org.patchca.filter.predefined.CurvesRippleFilterFactory;
+import org.patchca.service.ConfigurableCaptchaService;
+import org.patchca.word.RandomWordFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +28,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
 import javax.servlet.Filter;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -147,11 +152,6 @@ public class SecurityConfiguration extends CacheConfigSupport {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager());
         return authorizationAttributeSourceAdvisor;
-    }
-
-    @Bean(name = "jCaptchaFilter")
-    public Filter jCaptchaFilter() {
-        return new JCaptchaFilter();
     }
 
     @Bean(name = "shiroFilterBean")

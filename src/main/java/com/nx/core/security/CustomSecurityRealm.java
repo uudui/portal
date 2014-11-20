@@ -1,7 +1,7 @@
 package com.nx.core.security;
 
 import com.nx.core.exceptions.CaptchaException;
-import com.nx.core.filters.JCaptchaFilter;
+import com.nx.core.filters.CaptchaFilter;
 import com.nx.domain.security.User;
 import com.nx.service.UserService;
 import org.apache.shiro.SecurityUtils;
@@ -40,7 +40,7 @@ public class CustomSecurityRealm extends AuthorizingRealm {
         UsernamePasswordCaptchaToken token = (UsernamePasswordCaptchaToken) authenticationToken;
 
         String captcha = token.getCaptcha();
-        String exitCode = SecurityUtils.getSubject().getSession().getAttribute(JCaptchaFilter.KEY_CAPTCHA).toString();
+        String exitCode = SecurityUtils.getSubject().getSession().getAttribute(CaptchaFilter.KEY_CAPTCHA).toString();
         if (null == captcha || !captcha.equalsIgnoreCase(exitCode)) {
             throw new CaptchaException("captcha error");
         }

@@ -1,6 +1,7 @@
 package com.nx.core;
 
-import com.nx.core.filters.JCaptchaFilter;
+import com.nx.core.filters.CaptchaFilter;
+import com.nx.core.filters.FormAuthenticationCaptchaFilter;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.DelegatingFilterProxy;
@@ -41,6 +42,6 @@ public class WebApplicationInitializer implements org.springframework.web.WebApp
         container.addFilter("shiroFilter", shiroFilter).addMappingForUrlPatterns(null, false, "/*");
 
         // Register jCaptcha filter
-        container.addFilter("jCaptchaFilter", JCaptchaFilter.class).addMappingForUrlPatterns(null, false, "/captchaImg");
+        container.addFilter("captchaFilter", CaptchaFilter.class).addMappingForUrlPatterns(null, false, FormAuthenticationCaptchaFilter.DEFAULT_CAPTCHA_URL);
     }
 }
