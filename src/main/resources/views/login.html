@@ -1,9 +1,10 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org" xmlns:shiro="http://www.thymeleaf.org">
-<head>
-    <title tiles:fragment="title">Messages : View All</title>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.thymeleaf.org">
+<head th:include="header :: head('Portal')">
 </head>
 <body>
-<div tiles:fragment="content">
+<div>
+    <div th:include="navigate :: wrap"></div>
     <script th:inline="javascript">
         /*<![CDATA[*/
         function refreshCaptcha() {
@@ -52,6 +53,7 @@
             Your already login! <a href="javascript:history.go(-1)">please back</a>!
         </shiro:authenticated>
     </div>
+    <div th:replace="footer::footer"></div>
 </div>
 </body>
 </html>

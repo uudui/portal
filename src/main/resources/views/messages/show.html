@@ -1,9 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
-<head>
-    <title tiles:fragment="title">Messages : Create</title>
+<head th:include="header :: head('Show '+${message.id})">
 </head>
 <body>
 <div tiles:fragment="content">
+    <div th:include="navigate :: wrap"></div>
     <div class="container">
         <h1>Message : <span th:text="${message.summary}">A short summary...</span></h1>
         <dl>
@@ -15,6 +15,7 @@
             <dd id="text" th:text="${message.text}">A detailed message that is longer than the summary.</dd>
         </dl>
     </div>
+    <div th:include="footer :: footer"></div>
 </div>
 </body>
 </html>

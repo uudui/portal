@@ -1,9 +1,9 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
-<head>
-    <title tiles:fragment="title">Messages : View All</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="header :: head('InBox')">
 </head>
 <body>
-<div tiles:fragment="content">
+<div>
+    <div th:include="navigate :: wrap"></div>
     <h1>Inbox</h1>
     <table class="table table-bordered table-striped">
         <thead>
@@ -28,6 +28,10 @@
         </tr>
         </tbody>
     </table>
+    <div>
+        <label th:text="${{nowTime}}"/>
+    </div>
+    <div th:replace="footer::footer"></div>
 </div>
 </body>
 </html>

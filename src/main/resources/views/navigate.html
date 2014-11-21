@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.thymeleaf.org">
+<body>
+<div th:fragment="wrap">
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" th:href="@{/}"><img th:src="@{/resources/img/logo.png}" alt="Spring Security Sample"/></a>
+
+                <div class="nav-collapse collapse">
+                    <div>
+                        <shiro:guest>
+                            <p class="navbar-text pull-right">Please <a th:href="@{'/login'}">Login</a></p>
+                        </shiro:guest>
+                        <shiro:user>
+
+                            <form class="navbar-form pull-right" th:action="@{/logout}" method="post">
+                                <input type="submit" value="Log out"/>
+                            </form>
+
+                            <p class="navbar-text pull-right">
+                                <shiro:principal/>
+                                <shiro:notAuthenticated>
+                                    (Remember)
+                                </shiro:notAuthenticated>
+                            </p>
+                        </shiro:user>
+                    </div>
+                    <ul class="nav">
+                        <li><a th:href="@{/}">Inbox</a></li>
+                        <li><a th:href="@{/message}">Message</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

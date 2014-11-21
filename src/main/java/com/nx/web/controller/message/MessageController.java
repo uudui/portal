@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/message")
@@ -32,11 +33,13 @@ public class MessageController {
         this.messageRepository = messageRepository;
     }
 
-    @RequiresRoles("neal")
+    @RequiresRoles("admin")
     @RequestMapping
     public ModelAndView list() {
         Iterable<Message> messages = messageRepository.findAll();
-        return new ModelAndView("messages/inbox", "messages", messages);
+        ModelAndView modelAndView = new ModelAndView("messages/inbox", "messages", messages);
+        modelAndView.addObject("nowTime", new Date());
+        return modelAndView;
     }
 
     @RequiresPermissions(logical = Logical.AND, value = "message")
