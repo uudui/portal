@@ -1,7 +1,7 @@
 package com.nx.core;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
-import com.nx.core.global.DateFormatter;
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
@@ -9,9 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.Ordered;
 import org.springframework.data.repository.support.DomainClassConverter;
-import org.springframework.format.Formatter;
 import org.springframework.format.support.FormattingConversionService;
-import org.springframework.format.support.FormattingConversionServiceFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -23,9 +21,6 @@ import org.thymeleaf.spring4.view.ThymeleafView;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by Neal on 2014-09-28.
@@ -43,11 +38,8 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 
     @Bean(name = "conversionService")
     public FormattingConversionService conversionService() {
-        FormattingConversionServiceFactoryBean factoryBean = new FormattingConversionServiceFactoryBean();
-        Set<Formatter> formatterRegistrars = new HashSet<>();
-        formatterRegistrars.add(new DateFormatter());
-        factoryBean.setFormatters(formatterRegistrars);
-        return factoryBean.getObject();
+        FormattingConversionService factoryBean = new FormattingConversionService();
+        return factoryBean;
     }
 
     @Override
@@ -76,7 +68,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
-//        templateEngine.addDialect(new TilesDialect());
+        templateEngine.addDialect(new LayoutDialect());
         templateEngine.addDialect(new ShiroDialect());
         return templateEngine;
     }
@@ -92,14 +84,6 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
         viewResolver.setViewClass(ThymeleafView.class);
         return viewResolver;
     }
-
-//    @Bean
-//    public ThymeleafTilesConfigurer tilesConfigurer() {
-//        ThymeleafTilesConfigurer tilesConfigurer = new ThymeleafTilesConfigurer();
-//        tilesConfigurer.setDefinitions(new String[]{"classpath:tiles/tiles-def.xml"});
-//        tilesConfigurer.setCheckRefresh(develop);
-//        return tilesConfigurer;
-//    }
 
     @Bean
     public ExceptionHandlerExceptionResolver exceptionHandlerExceptionResolver() {

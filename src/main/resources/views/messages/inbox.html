@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="header :: head('InBox')">
+<head th:include="header :: head('InBox')" >
 </head>
 <body>
 <div>
@@ -31,7 +31,7 @@
     <div>
         <label th:text="${{nowTime}}"/>
     </div>
-    <div th:replace="footer::footer"></div>
+    <div th:replace="footer :: footer"></div>
 </div>
 </body>
 </html>
