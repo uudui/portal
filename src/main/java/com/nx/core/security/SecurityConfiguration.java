@@ -159,7 +159,7 @@ public class SecurityConfiguration extends CacheConfigSupport {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager());
         shiroFilter.setLoginUrl("/login");
-        shiroFilter.setSuccessUrl("/message");
+        shiroFilter.setSuccessUrl("/dashboard");
         shiroFilter.setUnauthorizedUrl("/unauthorized");
 
         //Custom Filter

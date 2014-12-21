@@ -1,6 +1,6 @@
 package com.nx.core.filters;
 
-import com.nx.core.utils.CaptchaUtil;
+import com.nx.core.utils.CaptchaUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.patchca.service.ConfigurableCaptchaService;
@@ -20,7 +20,7 @@ public class CaptchaFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        this.captchaService = CaptchaUtil.generateCaptchaService();
+        this.captchaService = CaptchaUtils.generateCaptchaService();
     }
 
     @Override

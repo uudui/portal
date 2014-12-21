@@ -44,7 +44,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("login");
+        registry.addViewController("/").setViewName("redirect:/dashboard");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 

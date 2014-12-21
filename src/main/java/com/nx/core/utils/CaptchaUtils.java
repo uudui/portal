@@ -11,10 +11,10 @@ import java.awt.*;
 /**
  * Created by Neal on 10/19 019.
  */
-public class CaptchaUtil {
+public class CaptchaUtils {
 
     // 随机产生的字符串
-    private static final String RANDOM_STRS = "23456789ABCDEFGHIGKLMNPQRSTUVWXYZ";
+    private static final String RANDOM_STRS = "1234567890";
 
     private static final int FONT_SIZE = 22;
 
@@ -35,7 +35,7 @@ public class CaptchaUtil {
 
         captchaService.setFilterFactory(new CurvesRippleFilterFactory(captchaService.getColorFactory()));
         captchaService.setHeight(30);
-        captchaService.setWidth(80);
+        captchaService.setWidth(70);
         return captchaService;
     }
 }

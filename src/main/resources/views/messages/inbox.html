@@ -1,9 +1,13 @@
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:include="header :: head('InBox')" >
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Message</title>
 </head>
 <body>
-<div>
-    <div th:include="navigate :: wrap"></div>
+<div layout:fragment="breadcrumb">
+    <li><a href="#"> Message</a></li>
+</div>
+<div layout:fragment="content">
     <h1>Inbox</h1>
     <table class="table table-bordered table-striped">
         <thead>
@@ -31,7 +35,6 @@
     <div>
         <label th:text="${{nowTime}}"/>
     </div>
-    <div th:replace="footer :: footer"></div>
 </div>
 </body>
 </html>

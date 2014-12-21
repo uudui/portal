@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:include="header :: head('Portal')">
+<head>
 </head>
 <body>
 <div>
-    <div th:include="navigate :: wrap"></div>
     <div class="container">
         You don't have permission <p th:text="|[${exception.message}]|"></p>
     </div>
 </div>
-<div th:replace="footer :: footer"></div>
 </body>
 </html>

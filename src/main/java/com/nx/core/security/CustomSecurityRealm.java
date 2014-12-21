@@ -40,8 +40,8 @@ public class CustomSecurityRealm extends AuthorizingRealm {
         UsernamePasswordCaptchaToken token = (UsernamePasswordCaptchaToken) authenticationToken;
 
         String captcha = token.getCaptcha();
-        String exitCode = SecurityUtils.getSubject().getSession().getAttribute(CaptchaFilter.KEY_CAPTCHA).toString();
-        if (null == captcha || !captcha.equalsIgnoreCase(exitCode)) {
+        String captchaCode = SecurityUtils.getSubject().getSession().getAttribute(CaptchaFilter.KEY_CAPTCHA).toString();
+        if (null == captcha || !captcha.equalsIgnoreCase(captchaCode)) {
             throw new CaptchaException("captcha error");
         }
         User user;
@@ -54,7 +54,7 @@ public class CustomSecurityRealm extends AuthorizingRealm {
             throw new UnknownAccountException();
         }
 
-
+        //Use RetryLimitHashedCredentialsMatcher check
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getName(),
                 user.getPassword(),

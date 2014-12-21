@@ -71,6 +71,18 @@ $(document).ready(function(){
 		$(this).parent(".input-prepend").removeClass("input-prepend-focus");
 	
 	});
+
+	$("#capacha").focus(function() {
+
+		$(this).parent(".input-prepend").addClass("input-prepend-focus");
+
+	});
+
+	$("#capacha").focusout(function() {
+
+		$(this).parent(".input-prepend").removeClass("input-prepend-focus");
+
+	});
 	
 				
 	/* ---------- Add class .active to current link  ---------- */

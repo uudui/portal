@@ -1,10 +1,13 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
-<head th:include="header :: head('Show '+${message.id})">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Message</title>
 </head>
 <body>
-<div tiles:fragment="content">
-    <div th:include="navigate :: wrap"></div>
-    <div class="container">
+<div layout:fragment="breadcrumb">
+    <li><a href="#">Message</a></li>
+</div>
+<div layout:fragment="content">
         <h1>Message : <span th:text="${message.summary}">A short summary...</span></h1>
         <dl>
             <dt>ID</dt>
@@ -14,8 +17,6 @@
             <dt>Message</dt>
             <dd id="text" th:text="${message.text}">A detailed message that is longer than the summary.</dd>
         </dl>
-    </div>
-    <div th:include="footer :: footer"></div>
 </div>
 </body>
 </html>

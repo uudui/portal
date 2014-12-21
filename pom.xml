@@ -246,6 +246,8 @@
             <artifactId>javassist</artifactId>
             <version>3.18.2-GA</version>
         </dependency>
+
+        <!--addition-->
     </dependencies>
 
 
