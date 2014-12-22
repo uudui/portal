@@ -18,7 +18,7 @@ public class SpringCacheManagerWrapper implements CacheManager {
     private org.springframework.cache.CacheManager cacheManager;
 
     /**
-     * 设置spring cache manager
+     * set spring cache manager
      *
      * @param cacheManager
      */

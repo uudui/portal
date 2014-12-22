@@ -44,14 +44,9 @@ public class CustomSecurityRealm extends AuthorizingRealm {
         if (null == captcha || !captcha.equalsIgnoreCase(captchaCode)) {
             throw new CaptchaException("captcha error");
         }
-        User user;
-        try {
-            user = userService.findByName(token.getUsername());
-            if (user == null) {
-                throw new UnknownAccountException("account not exist");
-            }
-        } catch (Exception e) {
-            throw new UnknownAccountException();
+        User user = userService.findByName(token.getUsername());
+        if (user == null) {
+            throw new UnknownAccountException("account not exist");
         }
 
         //Use RetryLimitHashedCredentialsMatcher check
