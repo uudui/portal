@@ -17,14 +17,15 @@
                 <h2><i class="halflings-icon edit"></i><span class="break"></span>User Info Form</h2>
             </div>
             <div class="box-content">
-                <form class="form-horizontal" method="post">
+                <form class="form-horizontal" method="post" data-toggle="validator">
                     <fieldset>
                         <div class="control-group">
                             <label class="control-label" for="userNameInput">User Name</label>
 
-                            <div class="controls">
-                                <input class="input-xlarge focused" id="userNameInput" type="text"
+                            <div class="controls form-group error">
+                                <input class="input-xlarge focused" id="userNameInput" type="text" required=""
                                        placeholder="user name"/>
+                                <span class="help-inline help-block with-errors">Please correct the error</span>
                             </div>
                         </div>
                         <div class="control-group">
