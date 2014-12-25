@@ -25,8 +25,7 @@
 
         <junit>4.10</junit>
         <commons-lang>2.6</commons-lang>
-        <slf4j-api>1.6.2</slf4j-api>
-        <logback>0.9.29</logback>
+        <logback>1.1.2</logback>
         <shiro>1.2.3</shiro>
         <aspectjrt>1.7.4</aspectjrt>
         <cglib>2.2.2</cglib>
@@ -62,11 +61,6 @@
         </dependency>
 
         <!-- Log -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-api}</version>
-        </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
