@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorator="baseLayout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="baseLayout">
 <head>
     <title>Login Page</title>
     <style type="text/css" th:inline="text">
@@ -50,7 +51,7 @@
                         <div class="input-prepend" title="Username">
                             <span class="add-on"><i class="halflings-icon user"></i></span>
                             <input class="input-large span10" name="username" id="username" type="text"
-                                   placeholder="username"/>
+                                   placeholder="username" th:value="${username}"/>
                         </div>
                         <div class="clearfix"></div>
 

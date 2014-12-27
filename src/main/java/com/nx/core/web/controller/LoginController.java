@@ -1,6 +1,7 @@
 package com.nx.core.web.controller;
 
 import com.nx.core.exceptions.CaptchaException;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Neal on 12/21 021.
@@ -30,6 +32,9 @@ public class LoginController {
         } else if (exceptionClassName != null) {
             error = "other error ：" + exceptionClassName;
         }
-        return new ModelAndView("login", Collections.singletonMap("error", error));
+        Map<String, String> model = new HashMap<>();
+        model.put("error", error);
+        model.put("username", SecurityUtils.getSubject().getPrincipal().toString());
+        return new ModelAndView("login", model);
     }
 }
